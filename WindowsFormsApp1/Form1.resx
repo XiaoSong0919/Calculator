@@ -123,7 +123,90 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>107, 17</value>
   </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+  <metadata name="listBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>58</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAABILAAASCwAAAAAAAAAA
+        AAA2Jie/NiYn+zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif6NiYnsDYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82JifzNiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/U2Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn9TYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn6TYm
+        J+Y2Jif/NiYn/zYmJ/82Jif/NiYn8jYmJ/s2Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/s2JieYNiYnqjYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif1NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jie5NiYnUTYmJ8M2Jif/NiYn/zYmJ8I2JidvNiYn5TYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/jYmJ5U2JieoNiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/U2Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/w2JieyNiYnSzYmJ6Q2JiemNiYnXzYmJ8g2Jif9NiYn/zYmJ/82Jif/NiYn/zYm
+        J/02JifZNiYnzTYmJ802JifONiYnzzYmJ882JifNNiYnzTYmJ9k2Jif9NiYn/zYmJ/82Jif/NiYn9TYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jie4NiYnHzYmJzE2JifUNiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn+TYmJ5s2Jid+NiYnfjYmJ342Jid/NiYnfzYmJ342Jid+NiYnnDYmJ/k2Jif/NiYn/zYm
+        J/82Jif1NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYnzjYmJ2M2JieVNiYncDYmJ2U2JifgNiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ+42JifyNiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/U2Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ9Q2JidhNiYnvTYmJ/82Jif2NiYnjDYm
+        J1Y2JifgNiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif5NiYnaTYmJ4I2Jif+NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn9TYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn7zYmJ+U2Jif/NiYn/zYm
+        J/82Jif9NiYnzDYmJ+82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/42JifTNiYn2zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif1NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/U2Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn9TYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82JifxNiYn4TYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif1NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ742JidxNiYn/jYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/U2Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYnvTYmJ2k2Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn9TYmJ/82Jif/NiYn/zYmJ/42JifENiYnpDYmJ6U2Jid4NiYnQzYmJ6Q2JiekNiYnqzYm
+        J+82Jif/NiYn/zYmJ/82Jif/NiYn+zYmJ7k2JiekNiYnpDYmJ6Q2JiekNiYnpDYmJ6Q2JiekNiYnpDYm
+        J8Q2Jif+NiYn/zYmJ/82Jif1NiYn/zYmJ/82Jif/NiYn/jYmJ8I2JieiNiYnojYmJ3Y2JidCNiYnoTYm
+        J6I2JieoNiYn7jYmJ/82Jif/NiYn/zYmJ/82Jif7NiYntzYmJ6I2JieiNiYnojYmJ6I2JieiNiYnojYm
+        J6I2JieiNiYnwjYmJ/42Jif/NiYn/zYmJ/U2Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYnvTYm
+        J2k2Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn9TYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jie+NiYncTYmJ/42Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif1NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/E2JifgNiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/U2Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn9TYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYmJ/82Jif/NiYn/zYm
+        J/82Jif1NiYn/zYmJ/82Jif+NiYn/TYmJ/02Jif9NiYn/TYmJ/02Jif9NiYn/TYmJ/02Jif9NiYn/TYm
+        J/02Jif9NiYn/TYmJ/02Jif9NiYn/TYmJ/02Jif9NiYn/TYmJ/02Jif9NiYn/TYmJ/02Jif9NiYn/TYm
+        J/02Jif+NiYn/zYmJ/U2Jif/NiYn/zYmJ7o2JidYNiYnWDYmJ1g2JidYNiYnWDYmJ1g2JidYNiYnWDYm
+        J1g2JidYNiYnWDYmJ1g2JidYNiYnWDYmJ1g2JidYNiYnWDYmJ1g2JidYNiYnWDYmJ1g2JidYNiYnWDYm
+        J1g2JidYNiYnWDYmJ7c2Jif/NiYn9TYmJ/82Jif/NiYnlDYmJwA2JicANiYnADYmJwA2JicANiYnADYm
+        JwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYm
+        JwA2JicANiYnADYmJwA2JicANiYnkDYmJ/82Jif1NiYn/zYmJ/82JieWAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2JieSNiYn/zYmJ/U2Jif/NiYn/zYmJ5YAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYmJ5I2Jif/NiYn9TYmJ/82Jif/NiYnlDYm
+        JwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYm
+        JwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnADYmJwA2JicANiYnkTYmJ/82Jif1NiYn/zYm
+        J/82JiepNiYnLzYmJy82JicvNiYnLzYmJy82JicvNiYnLzYmJy82JicvNiYnLzYmJy82JicvNiYnLzYm
+        Jy82JicvNiYnLzYmJy82JicvNiYnLzYmJy82JicvNiYnLzYmJy82JicvNiYnLzYmJy82JiemNiYn/zYm
+        J/Q2Jif+NiYn/zYmJ/g2JiftNiYn7TYmJ+02JiftNiYn7TYmJ+02JiftNiYn7TYmJ+02JiftNiYn7TYm
+        J+02JiftNiYn7TYmJ+02JiftNiYn7TYmJ+02JiftNiYn7TYmJ+02JiftNiYn7TYmJ+02JiftNiYn7TYm
+        J/c2Jif/NiYn9zYmJ7w2Jif5NiYn/TYmJ/42Jif+NiYn/jYmJ/42Jif+NiYn/jYmJ/42Jif+NiYn/jYm
+        J/42Jif+NiYn/jYmJ/42Jif+NiYn/jYmJ/42Jif+NiYn/jYmJ/42Jif+NiYn/jYmJ/42Jif+NiYn/jYm
+        J/42Jif+NiYn/TYmJ/k2Jie9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//
+        //gf///4H///+B////gAAAAAAAAAAAAAAAA=
+</value>
+  </data>
 </root>

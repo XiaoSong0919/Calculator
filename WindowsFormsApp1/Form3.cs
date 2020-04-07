@@ -16,8 +16,11 @@ namespace WindowsFormsApp1
         string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         string change_b1 = "0";
+        string change_b2 = "0";
         string void_b1;
         string save_void;
+        string void_b3;
+        //string save_void;
         public Form3()
         {
             InitializeComponent();
@@ -30,6 +33,12 @@ namespace WindowsFormsApp1
             {
                 checkBox1.Checked = true;
                 void_b1 = "1";
+            }
+            readtxt("update");
+            if (save_void == "1")
+            {
+                checkBox3.Checked = true;
+                void_b3 = "1";
             }
             button3.Enabled = false;
         }
@@ -69,6 +78,7 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
             savetxt(change_b1,"history",void_b1);
+            savetxt(change_b2, "update", void_b3);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -94,6 +104,19 @@ namespace WindowsFormsApp1
         {
             savetxt(change_b1, "history", void_b1);
             this.Close();
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == true)
+            {
+                void_b3 = "1";
+            }
+            else
+            {
+                void_b3 = "0";
+            }
+            button3.Enabled = true;
         }
     }
 }
