@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         string void_b1;
         string save_void;
         string void_b3;
+        bool tmp = false;
         //string save_void;
         public Form3()
         {
@@ -28,19 +29,47 @@ namespace WindowsFormsApp1
        
         private void Form3_Load(object sender, EventArgs e)
         {
-            readtxt("history");
-            if (save_void == "1")
+            if (File.Exists(path + "/use.txt"))
             {
-                checkBox1.Checked = true;
-                void_b1 = "1";
+                rot("use");
             }
-            readtxt("update");
-            if (save_void == "1")
+            if (save_void == "0")
             {
-                checkBox3.Checked = true;
-                void_b3 = "1";
+                tmp = true;
+                timer1.Enabled = true;
+                MessageBox.Show("检测到缺少相应的配置文件，本窗口的设置内容将无法使用", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                tmp = false;
+                
+
+            }
+            if (File.Exists(path + "/Calculator/history.txt"))
+            {
+                readtxt("history");
+                if (save_void == "1")
+                {
+                    checkBox1.Checked = true;
+                    void_b1 = "1";
+                }
+            }
+            if (File.Exists(path + "/Calculator/update.txt"))
+            {
+                readtxt("update");
+                if (save_void == "1")
+                {
+                    checkBox3.Checked = true;
+                    void_b3 = "1";
+                }
             }
             button3.Enabled = false;
+        }
+        public void rot(string filename3)
+        {
+            StreamReader srReadFile = new StreamReader(path + "/" + filename3 + ".txt");
+            save_void = Regex.Replace(srReadFile.ReadLine(), "\\s+", " ");
+            srReadFile.Close();
         }
         public void readtxt(string filename)
         {
@@ -117,6 +146,12 @@ namespace WindowsFormsApp1
                 void_b3 = "0";
             }
             button3.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            button3.Enabled = false;
+            button2.Enabled = false;
         }
     }
 }
