@@ -422,7 +422,7 @@ namespace WindowsFormsApp1
             try
             {
                 ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                HttpWebRequest req = (HttpWebRequest)WebRequest.CreateDefault(new Uri("http://blog.cannon.org.cn/version.txt"));
+                HttpWebRequest req = (HttpWebRequest)WebRequest.CreateDefault(new Uri("https://gitee.com/XiaoSong0919/Calculator/raw/master/version.txt"));
                 req.Method = "HEAD";//请求头
                 timer1.Interval = 5100;
                 timer1.Enabled = true;
@@ -434,7 +434,7 @@ namespace WindowsFormsApp1
                 {
                     timer1.Enabled = false;
                     //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://blog.cannon.org.cn/version.txt");
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://gitee.com/XiaoSong0919/Calculator/raw/master/version.txt");
                     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                     vulue = 15;
                     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -476,7 +476,7 @@ namespace WindowsFormsApp1
                             vulue = 100;
                             if (DialogResult == DialogResult.OK)
                             {
-                                update("http://blog.cannon.org.cn//linux/Calculator/Calculator"+ new_version +".exe");
+                                update("https://github.com/XiaoSong0919/Calculator/releases/download/v" + new_version + "/Calculator.exe");
                             }
                         }
                         else
