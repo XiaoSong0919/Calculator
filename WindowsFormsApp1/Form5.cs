@@ -15,6 +15,7 @@ using System.Web;
 //using System.IO;
 using System.Net;
 using System.Globalization;
+using System.Threading;
 //using System.Text;
 //using System.Net;
 
@@ -22,6 +23,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form5 : Form
     {
+        public static string name;
+         
         public Form5()
         {
             InitializeComponent();
@@ -52,10 +55,20 @@ namespace WindowsFormsApp1
             string strM = DateTime.Now.Minute.ToString();
             string text = textBox1.Text + "\r\n" + textBox2.Text + "\r\n" + textBox3.Text;
             newtxt(text, DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-"  + strY + "-" + strM + "-" + "bug_upload.txt");
-            Upload("ftp","", DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-" + strY + "-" + strM + "-" + "bug_upload.txt", "ftp://nas.cannon.org.cn:24/bugs_upload/");
+            name = DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-" + strY + "-" + strM + "-" + "bug_upload.txt";
+            ThreadStart childref = new ThreadStart(upload);
+             Thread childThread = new Thread(childref);
+            childThread.Start();
+            //Upload("ftp","", DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-" + strY + "-" + strM + "-" + "bug_upload.txt", "ftp://nas.cannon.org.cn:24/bugs_upload/");
+        }
+        public static void upload()
+        {
+
+            Upload("ftp", "", Form5.name, "ftp://nas.cannon.org.cn:24/bugs_upload/");
+            
         }
         
-        public void Upload(string userId, string pwd, string filename, string ftpPath)
+        public static void Upload(string userId, string pwd, string filename, string ftpPath)
         {
             try
             {
@@ -95,6 +108,13 @@ namespace WindowsFormsApp1
                     fs.Close();
                 }
                 MessageBox.Show("反馈成功！感谢您的支持！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+
+            }
+            catch(FileNotFoundException e)
+            {
+                MessageBox.Show("程序内部错误！反馈失败!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             catch (WebException e)
             {
@@ -105,16 +125,21 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("请关闭代理工具！","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            
-            
+            //finally
+            //{
+            //    MessageBox.Show("反馈失败！", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //
+            //}
+
+
             // catch (Exception ex)
             // {
 
             // }
-            
-        
 
 
-    }
+
+
+        }
     }
 }
