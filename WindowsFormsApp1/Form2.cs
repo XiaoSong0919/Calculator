@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,13 +21,21 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
+            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-        public void download()
+        public  void download()
+        {
+            Thread th1 = new Thread(Download);
+            th1.Start();
+
+
+        }
+        public void Download()
         {
             Form1 f1 = new Form1();
             string statusCode;

@@ -56,20 +56,19 @@ namespace WindowsFormsApp1
             string text = textBox1.Text + "\r\n" + textBox2.Text + "\r\n" + textBox3.Text;
             newtxt(text, DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-"  + strY + "-" + strM + "-" + "bug_upload.txt");
             name = DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-" + strY + "-" + strM + "-" + "bug_upload.txt";
-            ThreadStart childref = new ThreadStart(upload);
-             Thread childThread = new Thread(childref);
-            childThread.Start();
-            //Upload("ftp","", DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-" + strY + "-" + strM + "-" + "bug_upload.txt", "ftp://nas.cannon.org.cn:24/bugs_upload/");
-        }
-        public static void upload()
-        {
+            upload("ftp", "", DateTime.Now.Year.ToString() + "-" + DateTime.Now.DayOfYear.ToString() + "-" + strY + "-" + strM + "-" + "bug_upload.txt", "ftp://nas.cannon.org.cn:24/bugs_upload/");
 
-            Upload("ftp", "", Form5.name, "ftp://nas.cannon.org.cn:24/bugs_upload/");
-            
+
         }
-        
         public static void Upload(string userId, string pwd, string filename, string ftpPath)
         {
+            Thread childref = new Thread(() => upload(userId, pwd, filename, ftpPath));
+            childref.Start();
+        }
+
+
+            public static void upload(string userId, string pwd, string filename, string ftpPath)
+            {
             try
             {
                 Form1 f1 = new Form1();
@@ -125,17 +124,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("请关闭代理工具！","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            //finally
-            //{
-            //    MessageBox.Show("反馈失败！", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //
-            //}
-
-
-            // catch (Exception ex)
-            // {
-
-            // }
+            
 
 
 

@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Net;
 using IWshRuntimeLibrary;
+using System.CodeDom;
 
 namespace WindowsFormsApp1
 {
@@ -46,10 +47,12 @@ namespace WindowsFormsApp1
         double num23;//临时
         string url = "blog.cannon.org.cn";//更新服务器网址
         bool history;//关闭时数值保存
-        public double version = 1.33;//版本号
+        public double version = 1.40;//版本号
         public double new_version;//web获取最新版本号
         public string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);//我的文档路径
         string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);//桌面路径
+        string app_path_name = System.IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+        string app_path = Application.StartupPath;
         //Form4 f4 = new Form4();
         public Form1()
         {
@@ -282,33 +285,35 @@ namespace WindowsFormsApp1
       
         private void Form1_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(app_path);
             Form4 f4 = new Form4();
             timer3.Interval = 100;
             timer3.Enabled = true;
-
-            if (System.IO.File.Exists(path + "/Calculator/Calculator2.exe") && !System.IO.File.Exists(path + "/Calculator/change.txt"))
-            {
-                newtxt(0,"change.txt");
-                System.IO.File.Delete(path + "/Calculator/Calculator.exe");
-                System.IO.File.Delete(desktop_path + "/Calculator.exe");
-                System.IO.File.Copy(Application.ExecutablePath, path + "/Calculator/Calculator.exe");
-                System.IO.File.Copy(Application.ExecutablePath, desktop_path + "/Calculator.exe");
-                Process process = new Process();
-                //process.StartInfo.UseShellExecute = false;
-                process.StartInfo.FileName = path + "/Calculator/Calculator.exe";
-                //process.StartInfo.CreateNoWindow = true;
-                process.Start();
-                System.Environment.Exit(0);
-            }
-            if (System.IO.File.Exists(path + "/Calculator/change.txt"))
-            {
-                System.IO.File.Delete(path + "/Calculator/Calculator2.exe");
-                System.IO.File.Delete(path + "/Calculator/change.txt");
-            }
             textBox1.Text = "0";
             textBox2.Text = "";
             timer1.Enabled = false;
             timer1.Interval = 5000;
+            //--------------------Update_App_Path    Start-----------------------------
+            if (app_path =="Calculator2.exe")//判断当前运行程序版本
+            {
+                //newtxt(0,"change.txt");
+                System.IO.File.Delete(app_path + "/Calculator.exe");
+                //System.IO.File.Delete(desktop_path + "/Calculator.exe");
+                System.IO.File.Copy(Application.ExecutablePath, app_path + "/Calculator.exe");
+                //System.IO.File.Copy(Application.ExecutablePath, desktop_path + "/Calculator.exe");
+                Process process = new Process();
+                //process.StartInfo.UseShellExecute = false;
+                process.StartInfo.FileName = app_path + "/Calculator.exe";
+                //process.StartInfo.CreateNoWindow = true;
+                process.Start();
+                System.Environment.Exit(0);
+            }
+            if (System.IO.File.Exists(app_path + "/Calculator2.exe"))
+            {
+                System.IO.File.Delete(app_path + "/Calculator2.exe");
+                System.IO.File.Delete(app_path + "/Calculator/change.txt");
+            }
+            
 
             if (!System.IO.File.Exists(path + "/Calculator/update.txt") && Directory.Exists(path + "/Calculator"))
             {
@@ -322,6 +327,7 @@ namespace WindowsFormsApp1
                     newtxt(0, "update.txt");
                 }
             }
+            //------------------------------End-------------------------------
                 if (Directory.Exists(path + "/Calculator"))//如果不存在就创建file文件夹
                 {
 
@@ -581,10 +587,17 @@ namespace WindowsFormsApp1
         }
         public void readtxt(string filename)
         {
-            StreamReader srReadFile = new StreamReader(path + "/Calculator/" + filename + ".txt");
-            save_void = Regex.Replace(srReadFile.ReadLine(), "\\s+", " ");
-            new_version = System.Convert.ToDouble(save_void);
-            srReadFile.Close();
+            try
+            {
+                StreamReader srReadFile = new StreamReader(path + "/Calculator/" + filename + ".txt");
+                save_void = Regex.Replace(srReadFile.ReadLine(), "\\s+", " ");
+                new_version = System.Convert.ToDouble(save_void);
+                srReadFile.Close();
+            }
+            catch(FormatException e)
+            {
+                MessageBox.Show("程序内部错误! \n" + e.ToString() ,"Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
         public void rot(string filename3)
         {
