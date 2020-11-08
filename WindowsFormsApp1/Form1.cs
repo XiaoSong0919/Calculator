@@ -47,102 +47,109 @@ namespace WindowsFormsApp1
         double num23;//临时
         string url = "blog.cannon.org.cn";//更新服务器网址
         bool history;//关闭时数值保存
-        public double version = 1.40;//版本号
+        public double version = 1.41;//版本号
         public double new_version;//web获取最新版本号
         public string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);//我的文档路径
         string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);//桌面路径
         string app_path_name = System.IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath);
         string app_path = Application.StartupPath;
-        //Form4 f4 = new Form4();
-        public Form1()
+        string update_txt = "v1.41更新内容：\n修复已知bugs\n修复了程序更新失败的问题\n添加多线程支持\n去除了冗余代码\n修改程序运行逻辑\n修复首次运行可能会出现的bugs\n部分细节优化";
+        //string update_txt= "v"+ version.ToString() +"更新内容：\n修复已知bugs\n修复了程序更新失败的问题\n添加多线程支持\n部分细节优化";
+        //string extension;
+
+        //---------------------------------------------------函数区域----------------------------------------------------------
+        public void check_update()
         {
-            InitializeComponent();
-        }
- 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+            Form4 f4 = new Form4();
+            //string statusCode;
+            try
+            {
+                timer1.Enabled = false;
+                //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://gitee.com/XiaoSong0919/Calculator/raw/master/version.txt");
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                vulue = 15;
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                vulue = 25;
+                Stream responseStream = response.GetResponseStream();
+                vulue = 30;
+                Stream stream = new FileStream(path + "/Calculator/version.txt", FileMode.Create);
+                vulue = 55;
+                byte[] bArr = new byte[1024];
+                vulue = 65;
+                int size = responseStream.Read(bArr, 0, bArr.Length);
+                vulue = 75;
+                while (size > 0)
+                {
+                    stream.Write(bArr, 0, size);
+                    size = responseStream.Read(bArr, 0, bArr.Length);
+                }
+                stream.Close();
+                vulue = 85;
+                responseStream.Close();
+                vulue = 90;
+                readtxt("version");
+                new_version = System.Convert.ToDouble(save_void);
+                vulue = 95;
+                //f4.label4.Text = "v" + new_version;
+                vulue = 97;
+
+                if (new_version > version)
+                {
+                    vulue = 99;
+                    DialogResult = MessageBox.Show("检测到新版本，是否下载？", "检测完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    vulue = 100;
+                    if (DialogResult == DialogResult.OK)
+                    {
+
+                        update("http://8.210.24.5/XiaoSong0919/Calculator/releases/download/v" + new_version + "/Calculator.exe");
+
+                    }
+                }
+                else
+                {
+
+                    timer1.Enabled = false;
+                    vulue = 100;
+                    MessageBox.Show("暂无新版本", "检测完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (WebException e)
+            {
+                throw e;
+            }
 
         }
-        
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        public void update(string url)
         {
-            if (e.KeyChar == '1')
+            Form4 f4 = new Form4();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+            Stream responseStream = response.GetResponseStream();
+            Stream stream = new FileStream(path + "/Calculator/Calculator2.exe", FileMode.Create);
+            //System.IO.File.Copy(Application.ExecutablePath, desktop_path + "/Calculator.exe");
+            byte[] bArr = new byte[1024];
+            int size = responseStream.Read(bArr, 0, bArr.Length);
+            while (size > 0)
             {
-                nummath(1);
-                e.Handled = true;
-               
+                stream.Write(bArr, 0, size);
+                size = responseStream.Read(bArr, 0, bArr.Length);
             }
-            if (e.KeyChar == '2')
+            stream.Close();
+            responseStream.Close();
+            f4.progressBar1.Value = 100;
+            DialogResult = MessageBox.Show("升级成功！是否立即重启软件？", "升级完毕", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (DialogResult == DialogResult.OK)
             {
-                nummath(2);
-                e.Handled = true;
+                Process process = new Process();
+                //process.StartInfo.UseShellExecute = false;
+                process.StartInfo.FileName = path + "/Calculator/Calculator2.exe";
+                //process.StartInfo.CreateNoWindow = true;
+                process.Start();
+                System.Environment.Exit(0);
             }
-            if (e.KeyChar == '3')
-            {
-                nummath(3);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '4')
-            {
-                nummath(4);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '5')
-            {
-                nummath(5);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '6')
-            {
-                nummath(6);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '7')
-            {
-                nummath(7);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '8')
-            {
-                nummath(8);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '9')
-            {
-                nummath(9);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '0')
-            {
-                nummath(0);
-                e.Handled = true;
-            }
-            if (e.KeyChar == '.')
-            {
-                button23.PerformClick();// 执行按钮“1”的操作
-                e.Handled = true;
-            }
-            if (e.KeyChar == '+')
-            {
-                button8.PerformClick();// 执行按钮“1”的操作
-                e.Handled = true;
-            }
-            if (e.KeyChar == '-')
-            {
-                button3.PerformClick();// 执行按钮“1”的操作
-                e.Handled = true;
-            }
-            if (e.KeyChar == 'x' || e.KeyChar == '*')
-            {
-                button7.PerformClick();// 执行按钮“1”的操作
-                e.Handled = true;
-            }
-            if (e.KeyChar == '÷'|| e.KeyChar == '/')
-            {
-                button5.PerformClick();// 执行按钮“1”的操作
-                e.Handled = true;
-            }
-
         }
 
         public void addnum(bool cishu2 = false)//加法函数
@@ -245,7 +252,7 @@ namespace WindowsFormsApp1
             }
 
         }
-        public void nummath(double str1,bool p_true = false)//输出函数
+        public void nummath(double str1, bool p_true = false)//输出函数
         {
             string str3;
             if (p_true == true && ifpoint == false)
@@ -280,11 +287,145 @@ namespace WindowsFormsApp1
                     textBox1.Text = str3 + str1;
                 }
             }
-            
+
         }
+        public void newtxt(int txt2, string filename)
+        {
+            FileStream fs1 = new FileStream(path + "/Calculator/" + filename + ".txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1);
+            sw.WriteLine(txt2);//开始写入值
+            sw.Close();
+            fs1.Close();
+        }//创建txt
+        public void readtxt(string filename)
+        {
+            try
+            {
+                StreamReader srReadFile = new StreamReader(path + "/Calculator/" + filename + ".txt");
+                save_void = Regex.Replace(srReadFile.ReadLine(), "\\s+", " ");
+                srReadFile.Close();
+            }
+            catch (FormatException e)
+            {
+                MessageBox.Show("程序内部错误! \n" + e.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }//读取txt，并将结果保存在save_void,类型为double
+        public void writetxt(string txt, string filename,bool add)//追加写入txt，类型string;add为true时，追加写入,add为false时，覆盖写入
+        {
+            //deletetxt(filename);
+            String appDir = path + "/Calculator/" + filename + ".txt";
+            StreamWriter sw = new StreamWriter(appDir,add);
+            sw.WriteLine(txt);
+            sw.Close();
+        }
+        public void deletetxt(string filename2)
+        {
+            String appDir = path + "/Calculator/" + filename2 + ".txt";
+            FileStream stream = System.IO.File.Open(appDir, FileMode.OpenOrCreate, FileAccess.Write);
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.SetLength(0);
+            stream.Close();
+        }
+
+
+        //---------------------------------------------------函数区域结束-----------------------------------------------------------
+
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+ 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '1')
+            {
+                nummath(1);
+                e.Handled = true;
+               
+            }
+            if (e.KeyChar == '2')
+            {
+                nummath(2);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '3')
+            {
+                nummath(3);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '4')
+            {
+                nummath(4);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '5')
+            {
+                nummath(5);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '6')
+            {
+                nummath(6);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '7')
+            {
+                nummath(7);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '8')
+            {
+                nummath(8);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '9')
+            {
+                nummath(9);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '0')
+            {
+                nummath(0);
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.')
+            {
+                button23.PerformClick();// 执行按钮“1”的操作
+                e.Handled = true;
+            }
+            if (e.KeyChar == '+')
+            {
+                button8.PerformClick();// 执行按钮“1”的操作
+                e.Handled = true;
+            }
+            if (e.KeyChar == '-')
+            {
+                button3.PerformClick();// 执行按钮“1”的操作
+                e.Handled = true;
+            }
+            if (e.KeyChar == 'x' || e.KeyChar == '*')
+            {
+                button7.PerformClick();// 执行按钮“1”的操作
+                e.Handled = true;
+            }
+            if (e.KeyChar == '÷'|| e.KeyChar == '/')
+            {
+                button5.PerformClick();// 执行按钮“1”的操作
+                e.Handled = true;
+            }
+
+        }
+        
       
         private void Form1_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(app_path_name);
             //MessageBox.Show(app_path);
             Form4 f4 = new Form4();
             timer3.Interval = 100;
@@ -293,52 +434,57 @@ namespace WindowsFormsApp1
             textBox2.Text = "";
             timer1.Enabled = false;
             timer1.Interval = 5000;
+
             //--------------------Update_App_Path    Start-----------------------------
-            if (app_path =="Calculator2.exe")//判断当前运行程序版本
+            if (app_path_name =="Calculator2")//判断当前运行程序版本
             {
-                //newtxt(0,"change.txt");
-                System.IO.File.Delete(app_path + "/Calculator.exe");
-                //System.IO.File.Delete(desktop_path + "/Calculator.exe");
-                System.IO.File.Copy(Application.ExecutablePath, app_path + "/Calculator.exe");
-                //System.IO.File.Copy(Application.ExecutablePath, desktop_path + "/Calculator.exe");
+                newtxt(1,"change");
+                System.IO.File.Delete(path + "/Calculator/Calculator.exe");
+                System.IO.File.Copy(Application.ExecutablePath, path + "/Calculator/Calculator.exe");
                 Process process = new Process();
-                //process.StartInfo.UseShellExecute = false;
-                process.StartInfo.FileName = app_path + "/Calculator.exe";
-                //process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.FileName = path + "/Calculator/Calculator.exe";
                 process.Start();
                 System.Environment.Exit(0);
             }
-            if (System.IO.File.Exists(app_path + "/Calculator2.exe"))
+            if (System.IO.File.Exists(path + "/Calculator/Calculator2.exe"))
             {
-                System.IO.File.Delete(app_path + "/Calculator2.exe");
-                System.IO.File.Delete(app_path + "/Calculator/change.txt");
+                System.IO.File.Delete(path + "/Calculator/Calculator2.exe");
             }
             
 
-            if (!System.IO.File.Exists(path + "/Calculator/update.txt") && Directory.Exists(path + "/Calculator"))
+            if (System.IO.File.Exists(path + "/Calculator/change.txt"))
             {
-                DialogResult = MessageBox.Show("欢迎更新新版本。是否启用自动检查更新？", "检查更新", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (DialogResult == DialogResult.OK)
+                
+                MessageBox.Show("欢迎更新新版本!您现在使用的版本为："+ version , "检查更新", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(update_txt, "欢迎", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                System.IO.File.Delete(path + "/Calculator/change.txt");
+                if (!System.IO.File.Exists(path + "/Calculator/update.txt"))
                 {
-                    newtxt(1, "update.txt");
-                }
-                else
-                {
-                    newtxt(0, "update.txt");
-                }
-            }
-            //------------------------------End-------------------------------
-                if (Directory.Exists(path + "/Calculator"))//如果不存在就创建file文件夹
-                {
+                    DialogResult = MessageBox.Show("是否启用自动更新？","Question",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+                    if (DialogResult == DialogResult.OK)
+                    {
+                        newtxt(1, "update");
+                    }
+                    else
+                    {
+                        newtxt(0, "update");
+                    }
 
                 }
-                else
+                
+            }
+            //------------------------------Update_App_Path End-------------------------------
+
+
+
+            //-----------------------------判断是否首次运行----------------------------
+            if (!Directory.Exists(path + "/Calculator"))
                 {
-  
-                    
                     //创建相应文件夹及txt
-                      Directory.CreateDirectory(path + "/Calculator");//创建该文件夹
-                      System.IO.File.Copy(Application.ExecutablePath, path + "/Calculator/Calculator.exe");
+                    Directory.CreateDirectory(path + "/Calculator");//创建该文件夹
+                    System.IO.File.Copy(Application.ExecutablePath, path + "/Calculator/Calculator.exe");
+
+                //-------------------------------------------快捷方式----------------------------------------
                     string shortcutPath = Path.Combine(desktop_path, string.Format("{0}.lnk", "Calculator"));
                     WshShell shell = new WshShell();
                     IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);//创建快捷方式对象
@@ -348,42 +494,38 @@ namespace WindowsFormsApp1
                     shortcut.Description = "";//设置备注
                     shortcut.IconLocation = string.IsNullOrWhiteSpace(path + "/Calculator/Calculator.exe") ? path + "/Calculator/Calculator.exe" : path + "/Calculator/Calculator.exe";//设置图标路径
                     shortcut.Save();//保存快捷方式
-                    //System.IO.File.Copy(Application.ExecutablePath, desktop_path + "/Calculator.exe");
-                      newtxt(0,"history.txt");
-                      not(1, "use.txt");
-                      newtxt(0, "history_savetext.txt");
+                //------------------------------------------快捷方式 End-----------------------------------
+
+                      newtxt(0,"history");
+                      newtxt(1, "use");
+                      newtxt(0, "history_savetext");
                       //以下为判断创建情况
                        DialogResult = MessageBox.Show("是否启用自动检查更新？", "检查更新", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                       if (DialogResult == DialogResult.OK)
                       {
-                        newtxt(1, "update.txt");
+                        newtxt(1, "update");
                       }
                       else
                       {
-                        newtxt(0, "update.txt");
+                        newtxt(0, "update");
                       }
 
-                 
-               
-                
                  DialogResult = MessageBox.Show("检测到您第一次运行本程序，祝您使用愉快！", "欢迎", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                
-                //else
-                //{
-                //Directory.CreateDirectory(path + "/tmp");
-                //    not(0,"use.txt");
-                //}
 
             }
-            if (System.IO.File.Exists(path + "/use.txt"))
-            {
-            rot("use");
-            }
-            if (save_void == "0")
-            {
+                //------------------------------------------首次运行判断结束-----------------------------------------------------
 
+
+
+            if (System.IO.File.Exists(path + "/Calculator/use.txt"))
+            {
+            readtxt("use");
             }
             else
+            {
+                newtxt(0,"use");
+            }
+            if (save_void != "0")
             {
                 if (System.IO.File.Exists(path + "/Calculator/history.txt"))
                 {
@@ -402,225 +544,41 @@ namespace WindowsFormsApp1
                         {
                             history = false;
                         }
-
-
                     }
                     else
                     {
                         history = false;
                     }
                 }
-                if (System.IO.File.Exists(path + "/Calculator/update.txt"))
-                { 
-                    readtxt("update");
-                    if (save_void == "1")
-                    {
-                        check_update();
-                    }
+                
+            }
+            if (System.IO.File.Exists(path + "/Calculator/update.txt"))
+            {
+                readtxt("update");
+                if (save_void == "1")
+                {
+                    check_update();
                 }
             }
 
         }
-        public void check_update()
-        {
-            Form4 f4 = new Form4();
-            string statusCode;
-            try
-            {
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                HttpWebRequest req = (HttpWebRequest)WebRequest.CreateDefault(new Uri("https://gitee.com/XiaoSong0919/Calculator/raw/master/version.txt"));
-                req.Method = "HEAD";//请求头
-                timer1.Interval = 5100;
-                timer1.Enabled = true;
-                //f4.timer2.Enabled = true;
-                req.Timeout = 5000; //超时时间
-                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-                statusCode = res.StatusCode.ToString();
-                if (statusCode == "OK")
-                {
-                    timer1.Enabled = false;
-                    //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://gitee.com/XiaoSong0919/Calculator/raw/master/version.txt");
-                    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                    vulue = 15;
-                    ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                    HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                    vulue = 25;
-                    Stream responseStream = response.GetResponseStream();
-                    vulue = 30;
-                    Stream stream = new FileStream(path + "/Calculator/version.txt", FileMode.Create);
-                    vulue = 55;
-                    byte[] bArr = new byte[1024];
-                    vulue = 65;
-                    int size = responseStream.Read(bArr, 0, bArr.Length);
-                    vulue = 75;
-                    while (size > 0)
-                    {
-                        stream.Write(bArr, 0, size);
-                        size = responseStream.Read(bArr, 0, bArr.Length);
-                    }
-                    stream.Close();
-                    vulue = 85;
-                    responseStream.Close();
-                    vulue = 90;
-                    readtxt("version");
-                    vulue = 95;
-                    //f4.label4.Text = "v" + new_version;
-                    vulue = 97;
-                    if (new_version < version)
-                    {
-                        MessageBox.Show("？？？尼玛情况？？？", "检测完成", MessageBoxButtons.OK, MessageBoxIcon.Question);
-
-
-                    }
-                    else
-                    {
-                        if (new_version > version)
-                        {
-                            vulue = 99;
-                            DialogResult = MessageBox.Show("检测到新版本，是否下载？", "检测完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                            vulue = 100;
-                            if (DialogResult == DialogResult.OK)
-                            {
-                                update("https://github.com/XiaoSong0919/Calculator/releases/download/v" + new_version + "/Calculator.exe");
-                            }
-                        }
-                        else
-                        {
-
-                            timer1.Enabled = false;
-                            vulue = 100;
-                            MessageBox.Show("暂无新版本", "检测完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-                else
-                {
-                    timer1.Enabled = false;
-                    MessageBox.Show("更新失败：网络错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (WebException)
-            {
-
-            }
-
-        }
-        public void update(string url)
-        {
-            Form4 f4 = new Form4();
-            string statusCode;
-            HttpWebRequest req = (HttpWebRequest)WebRequest.CreateDefault(new Uri(url));
-            req.Method = "HEAD";//请求头
-            timer1.Interval = 5100;
-            timer1.Enabled = true;
-            req.Timeout = 5000; //超时时间
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            statusCode = res.StatusCode.ToString();
-            if (statusCode == "OK")
-            {
-                timer1.Enabled = false;
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                Stream responseStream = response.GetResponseStream();
-                Stream stream = new FileStream(path + "/Calculator/Calculator2.exe", FileMode.Create);
-                //System.IO.File.Copy(Application.ExecutablePath, desktop_path + "/Calculator.exe");
-                byte[] bArr = new byte[1024];
-                int size = responseStream.Read(bArr, 0, bArr.Length);
-                while (size > 0)
-                {
-                    stream.Write(bArr, 0, size);
-                    size = responseStream.Read(bArr, 0, bArr.Length);
-                }
-                stream.Close();
-                responseStream.Close();
-                f4.progressBar1.Value = 100;
-                DialogResult = MessageBox.Show("升级成功！是否立即重启软件？", "升级完毕", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (DialogResult == DialogResult.OK)
-                {
-                    Process process = new Process();
-                    //process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.FileName = path + "/Calculator/Calculator2.exe";
-                    //process.StartInfo.CreateNoWindow = true;
-                    process.Start();
-                    System.Environment.Exit(0);
-                }
-            }
-            else
-            {
-                timer1.Enabled = false;
-                MessageBox.Show("更新失败：网络错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
+            
+        
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
-            if (history == true)
-            {
-                deletetxt("history_savetext");
-                writetxt(textBox1.Text,"history_savetext");
-            }
+
+                writetxt(textBox1.Text,"history_savetext",false);
+            
 
         }
         private void Form1_FormClosed(Object sender, FormClosedEventArgs e)
         {
-            if (history == true)
-            {
-                deletetxt("history_savetext");
-                writetxt(textBox1.Text, "history_savetext");
-            }
+
+                writetxt(textBox1.Text, "history_savetext",false);
+            
         }
-        public void not(int txt3, string filename2)
-        {
-            FileStream fs1 = new FileStream(path  + "/" + filename2, FileMode.Create, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1);
-            sw.WriteLine(txt3);//开始写入值
-            sw.Close();
-            fs1.Close();
-        }
-        public void newtxt(int txt2, string filename)
-        {
-            FileStream fs1 = new FileStream(path + "/Calculator/" + filename , FileMode.Create, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1);
-            sw.WriteLine(txt2);//开始写入值
-            sw.Close();
-            fs1.Close();
-        }
-        public void readtxt(string filename)
-        {
-            try
-            {
-                StreamReader srReadFile = new StreamReader(path + "/Calculator/" + filename + ".txt");
-                save_void = Regex.Replace(srReadFile.ReadLine(), "\\s+", " ");
-                new_version = System.Convert.ToDouble(save_void);
-                srReadFile.Close();
-            }
-            catch(FormatException e)
-            {
-                MessageBox.Show("程序内部错误! \n" + e.ToString() ,"Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-        }
-        public void rot(string filename3)
-        {
-            StreamReader srReadFile = new StreamReader(path + "/" + filename3 + ".txt");
-            save_void = Regex.Replace(srReadFile.ReadLine(), "\\s+", " ");
-            srReadFile.Close();
-        }
-        public void writetxt(string txt,string filename)
-        {
-            deletetxt(filename);
-            String appDir = path + "/Calculator/" + filename + ".txt";
-            StreamWriter sw = new StreamWriter(appDir);//saOrAp表示覆盖或者是追加
-            sw.WriteLine(txt);
-            sw.Close();
-        }
-        public void deletetxt(string filename2)
-        {
-            String appDir = path + "/Calculator/" + filename2 + ".txt";
-            FileStream stream = System.IO.File.Open(appDir, FileMode.OpenOrCreate, FileAccess.Write);
-            stream.Seek(0, SeekOrigin.Begin);
-            stream.SetLength(0);
-            stream.Close();
-        }
+        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             text1_zero = false;
@@ -1167,6 +1125,12 @@ namespace WindowsFormsApp1
 
         private void 其他ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void 更新内容ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(update_txt, "欢迎", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }
